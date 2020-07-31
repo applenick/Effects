@@ -47,8 +47,8 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
     public CommandManager(PlayerParticles playerParticles) {
         super(playerParticles);
 
-        PluginCommand pp = this.playerParticles.getCommand("pp");
-        PluginCommand ppo = this.playerParticles.getCommand("ppo");
+        PluginCommand pp = this.playerParticles.getCommand("fx");
+        PluginCommand ppo = this.playerParticles.getCommand("fxo");
 
         if (pp == null || ppo == null) {
             Bukkit.getPluginManager().disablePlugin(this.playerParticles);
@@ -139,7 +139,7 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
 
-        if (cmd.getName().equalsIgnoreCase("pp")) {
+        if (cmd.getName().equalsIgnoreCase("fx")) {
             String commandName = args.length > 0 ? args[0] : "";
             CommandModule commandModule = this.findMatchingCommand(commandName);
             if (commandModule == null) {
@@ -173,7 +173,7 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
             });
 
             return true;
-        } else if (cmd.getName().equalsIgnoreCase("ppo")) {
+        } else if (cmd.getName().equalsIgnoreCase("fxo")) {
             Bukkit.getScheduler().runTaskAsynchronously(this.playerParticles, () -> this.ppoCommand.onCommandExecute(sender, args));
         }
         
@@ -191,7 +191,7 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
      */
     @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("pp")) {
+        if (cmd.getName().equalsIgnoreCase("fx") && sender.hasPermission("fx.staff")) {
             PPlayer pplayer = PlayerParticlesAPI.getInstance().getPPlayer(sender);
             if (pplayer == null)
                 return new ArrayList<>();
@@ -209,7 +209,7 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
                     return commandModule.onTabComplete(pplayer, cmdArgs);
                 }
             }
-        } else if (cmd.getName().equalsIgnoreCase("ppo")) {
+        } else if (cmd.getName().equalsIgnoreCase("fxo") && sender.hasPermission("fx.staff")) {
             return this.ppoCommand.onTabComplete(sender, args);
         }
         

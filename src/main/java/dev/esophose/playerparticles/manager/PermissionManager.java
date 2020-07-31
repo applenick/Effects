@@ -19,6 +19,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachmentInfo;
+import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.PluginManager;
 
 public class PermissionManager extends Manager {
@@ -151,7 +152,7 @@ public class PermissionManager extends Manager {
         }
 
         // Register all permissions as a child to the global plugin permission
-        pluginManager.addPermission(new Permission("playerparticles.*", childPermissions));
+        pluginManager.addPermission(new Permission("playerparticles.*", PermissionDefault.OP, childPermissions));
     }
 
     @Override

@@ -19,16 +19,16 @@ public class EnglishLocale implements Locale {
     public Map<String, String> getDefaultLocaleStrings() {
         return new LinkedHashMap<String, String>() {{
             this.put("#0", "Plugin Message Prefix");
-            this.put("prefix", "&7[<g:#00aaaa:#0066aa>PlayerParticles&7] ");
+            this.put("prefix", "&7[<g:#00aaaa:#0066aa>Effects&7] ");
 
             this.put("#1", "Command Description Messages");
             this.put("command-error-missing-effects-or-styles", "&cYou must have access to effects and styles to use this command!");
-            this.put("command-error-unknown", "&cUnknown command, use &b/pp help &cfor a list of commands.");
+            this.put("command-error-unknown", "&cUnknown command, use &b/fx help &cfor a list of commands.");
             this.put("command-descriptions", "&eThe following commands are available:");
-            this.put("command-descriptions-usage", "&e/pp %cmd% %args%");
-            this.put("command-descriptions-help-1", "&7> &b/pp %cmd% &e- %desc%");
-            this.put("command-descriptions-help-2", "&7> &b/pp %cmd% %args% &e- %desc%");
-            this.put("command-descriptions-help-other", "&7> &b/ppo <player> <command> &e- Run a /pp command as a player");
+            this.put("command-descriptions-usage", "&e/fx %cmd% %args%");
+            this.put("command-descriptions-help-1", "&7> &b/fx %cmd% &e- %desc%");
+            this.put("command-descriptions-help-2", "&7> &b/fx %cmd% %args% &e- %desc%");
+            this.put("command-descriptions-help-other", "&7> &b/fxo <player> <command> &e- Run a /fx command as a player");
             this.put("command-description-add", "Add a new particle");
             this.put("command-description-data", "Check what type of data an effect uses");
             this.put("command-description-default", "The main command. By default, opens the GUI");
@@ -49,38 +49,38 @@ public class EnglishLocale implements Locale {
             this.put("command-description-worlds", "Find out what worlds particles are disabled in");
 
             this.put("#2", "Fixed Particle Command Description Messages");
-            this.put("command-description-fixed-create", "&e/pp fixed create <<x> <y> <z>|<looking>> <effect> <style> [data] - Creates a new fixed effect");
-            this.put("command-description-fixed-create-console", "&e/pp fixed create <x> <y> <z> <world> <effect> <style> [data] - Creates a new fixed effect");
-            this.put("command-description-fixed-edit", "&e/pp fixed edit <id> <effect|style|data|location> <args> - Edit part of a fixed effect by its ID");
-            this.put("command-description-fixed-remove", "&e/pp fixed remove <ID> - Removes a fixed effect by its ID");
-            this.put("command-description-fixed-list", "&e/pp fixed list - Lists all IDs of your fixed effects");
-            this.put("command-description-fixed-info", "&e/pp fixed info <ID> - Gets info on one of your fixed effects");
-            this.put("command-description-fixed-clear", "&e/pp fixed clear <radius> - Clears all fixed effects of all players within the given radius");
-            this.put("command-description-fixed-clear-console", "&e/pp fixed clear <radius> <x> <y> <z> <world> - Clears all fixed effects of all players within the given radius");
-            this.put("command-description-fixed-teleport", "&e/pp fixed teleport <id> - Teleports you to one of your fixed effects");
+            this.put("command-description-fixed-create", "&e/fx fixed create <<x> <y> <z>|<looking>> <effect> <style> [data] - Creates a new fixed effect");
+            this.put("command-description-fixed-create-console", "&e/fx fixed create <x> <y> <z> <world> <effect> <style> [data] - Creates a new fixed effect");
+            this.put("command-description-fixed-edit", "&e/fx fixed edit <id> <effect|style|data|location> <args> - Edit part of a fixed effect by its ID");
+            this.put("command-description-fixed-remove", "&e/fx fixed remove <ID> - Removes a fixed effect by its ID");
+            this.put("command-description-fixed-list", "&e/fx fixed list - Lists all IDs of your fixed effects");
+            this.put("command-description-fixed-info", "&e/fx fixed info <ID> - Gets info on one of your fixed effects");
+            this.put("command-description-fixed-clear", "&e/fx fixed clear <radius> - Clears all fixed effects of all players within the given radius");
+            this.put("command-description-fixed-clear-console", "&e/fx fixed clear <radius> <x> <y> <z> <world> - Clears all fixed effects of all players within the given radius");
+            this.put("command-description-fixed-teleport", "&e/fx fixed teleport <id> - Teleports you to one of your fixed effects");
 
             this.put("#2.5", "Group Command Description Messages");
-            this.put("command-description-group-save", "&e/pp group save <name> - Saves all active particles in a new group");
-            this.put("command-description-group-load", "&e/pp group load <name> - Loads all particles saved in a group");
-            this.put("command-description-group-remove", "&e/pp group remove <name> - Removes a group you have saved");
-            this.put("command-description-group-list", "&e/pp group list <name> - List all particle groups you have saved");
-            this.put("command-description-group-info", "&e/pp group info <name> - List the particles saved in the group");
+            this.put("command-description-group-save", "&e/fx group save <name> - Saves all active particles in a new group");
+            this.put("command-description-group-load", "&e/fx group load <name> - Loads all particles saved in a group");
+            this.put("command-description-group-remove", "&e/fx group remove <name> - Removes a group you have saved");
+            this.put("command-description-group-list", "&e/fx group list <name> - List all particle groups you have saved");
+            this.put("command-description-group-info", "&e/fx group info <name> - List the particles saved in the group");
 
             this.put("#3", "ID Messages");
             this.put("id-invalid", "&cThe ID you entered is invalid, it must be a positive whole number!");
             this.put("id-unknown", "&cYou do not have a particle applied with the ID &b%id%&c!");
 
             this.put("#4", "Other Messages");
-            this.put("other-no-permission", "&cYou do not have permission to execute PlayerParticles commands for other players!");
-            this.put("other-missing-args", "&cYou are missing some arguments. &b/ppo <player> <command>");
+            this.put("other-no-permission", "&cYou do not have permission to execute Effect commands for other players!");
+            this.put("other-missing-args", "&cYou are missing some arguments. &b/fxo <player> <command>");
             this.put("other-unknown-player", "&cThe player &b%player% &cwas not found. They must be online.");
-            this.put("other-unknown-command", "&cThe command &b/pp %cmd% &cdoes not exist.");
-            this.put("other-success", "&eExecuted /pp command for &b%player%&e. Output:");
+            this.put("other-unknown-command", "&cThe command &b/fx %cmd% &cdoes not exist.");
+            this.put("other-success", "&eExecuted /fx command for &b%player%&e. Output:");
 
             this.put("#5", "Add Messages");
             this.put("add-reached-max", "&cUnable to apply particle, you have reached the maximum amount of &b%amount% &callowed!");
             this.put("add-particle-applied", "&aA new particle has been applied with the effect &b%effect%&a, style &b%style%&a, and data &b%data%&a!");
-            this.put("data-no-args", "&cMissing argument for effect! Command usage: &b/pp data <effect>");
+            this.put("data-no-args", "&cMissing argument for effect! Command usage: &b/fx data <effect>");
 
             this.put("#6", "Edit Messages");
             this.put("edit-invalid-property", "&cAn invalid property &b%prop% &cwas provided. Valid properties: &beffect&c, &bstyle&c, &bdata");
@@ -93,7 +93,7 @@ public class EnglishLocale implements Locale {
             this.put("group-no-permission", "&cYou are missing permission for an effect or style to use the group &b%group%&c!");
             this.put("group-preset-no-permission", "&cYou are missing permission for an effect or style to use the preset group &b%group%&c!");
             this.put("group-reserved", "&cThe group name &bactive &cis reserved and cannot be used!");
-            this.put("group-no-name", "&cYou did not provide a group name! &b/pp %cmd% <groupName>");
+            this.put("group-no-name", "&cYou did not provide a group name! &b/fx %cmd% <groupName>");
             this.put("group-save-reached-max", "&cUnable to save group, you have reached the max number of groups!");
             this.put("group-save-no-particles", "&cUnable to save group, you do not have any particles applied!");
             this.put("group-save-success", "&aYour current particles have been saved under the group named &b%name%&a!");
@@ -112,7 +112,7 @@ public class EnglishLocale implements Locale {
             this.put("reload-no-permission", "&cYou do not have permission to reload the plugin settings!");
 
             this.put("#9", "Remove Messages");
-            this.put("remove-no-args", "&cYou did not specify an ID to remove! &b/pp remove <ID>");
+            this.put("remove-no-args", "&cYou did not specify an ID to remove! &b/fx remove <ID>");
             this.put("remove-id-success", "&aYour particle with the ID &b%id% &ahas been removed!");
             this.put("remove-effect-success", "&aRemoved &b%amount% &aof your particles with the effect of &b%effect%&a!");
             this.put("remove-effect-none", "&cYou do not have any particles applied with the effect &b%effect%&c!");
@@ -136,14 +136,14 @@ public class EnglishLocale implements Locale {
 
             this.put("#13", "Effect Messages");
             this.put("effect-no-permission", "&cYou do not have permission to use the effect &b%effect%&c!");
-            this.put("effect-invalid", "&cThe effect &b%effect% &cdoes not exist! Use &b/pp effects &cfor a list of effects you can use.");
+            this.put("effect-invalid", "&cThe effect &b%effect% &cdoes not exist! Use &b/fx effects &cfor a list of effects you can use.");
             this.put("effect-list", "&eYou can use the following effects: &b%effects%");
             this.put("effect-list-empty", "&cYou do not have permission to use any effects!");
 
             this.put("#14", "Style Messages");
             this.put("style-no-permission", "&cYou do not have permission to use the style &b%style%&c!");
             this.put("style-event-spawning-info", "&eNote: The style &b%style% &espawns particles based on an event.");
-            this.put("style-invalid", "&cThe style &b%style% &cdoes not exist! Use &b/pp styles &cfor a list of styles you can use.");
+            this.put("style-invalid", "&cThe style &b%style% &cdoes not exist! Use &b/fx styles &cfor a list of styles you can use.");
             this.put("style-list", "&eYou can use the following styles: &b%styles%");
 
             this.put("#15", "Data Messages");
@@ -180,7 +180,7 @@ public class EnglishLocale implements Locale {
             this.put("fixed-create-style-invalid", "&cUnable to create fixed effect, a style with the name &b%style% &cdoes not exist!");
             this.put("fixed-create-style-no-permission", "&cUnable to create fixed effect, you do not have permission to use the style &b%style%&c!");
             this.put("fixed-create-style-non-fixable", "&cUnable to create fixed effect, the style &b%style% &ccan not be used in fixed effects!");
-            this.put("fixed-create-data-error", "&cUnable to create fixed effect, the data provided is not correct! Use &b/pp data <effect> &cto find the correct data format!");
+            this.put("fixed-create-data-error", "&cUnable to create fixed effect, the data provided is not correct! Use &b/fx data <effect> &cto find the correct data format!");
             this.put("fixed-create-success", "&aYour fixed effect has been created!");
 
             this.put("#19", "Fixed Edit Messages");
@@ -195,7 +195,7 @@ public class EnglishLocale implements Locale {
             this.put("fixed-edit-style-invalid", "&cUnable to edit fixed effect, a style with the name &b%style% &cdoes not exist!");
             this.put("fixed-edit-style-no-permission", "&cUnable to edit fixed effect, you do not have permission to use the style &b%style%&c!");
             this.put("fixed-edit-style-non-fixable", "&cUnable to edit fixed effect, the style &b%style% &ccan not be used in fixed effects!");
-            this.put("fixed-edit-data-error", "&cUnable to edit fixed effect, the data provided is not correct! Use &b/pp data <effect> &cto find the correct data format!");
+            this.put("fixed-edit-data-error", "&cUnable to edit fixed effect, the data provided is not correct! Use &b/fx data <effect> &cto find the correct data format!");
             this.put("fixed-edit-data-none", "&cUnable to edit fixed effect, the effect does not require any data!");
             this.put("fixed-edit-success", "&aUpdated the &b%prop% &aof the fixed effect with an ID of &b%id%&a!");
 
@@ -230,10 +230,10 @@ public class EnglishLocale implements Locale {
             this.put("#24", "Fixed Other Messages");
             this.put("fixed-no-permission", "&cYou do not have permission to use fixed effects!");
             this.put("fixed-max-reached", "&cYou have reached the maximum allowed fixed effects!");
-            this.put("fixed-invalid-command", "&cInvalid sub-command for &b/pp fixed&c!");
+            this.put("fixed-invalid-command", "&cInvalid sub-command for &b/fx fixed&c!");
 
             this.put("#25", "Plugin Update Message");
-            this.put("update-available", "&eAn update (&bv%new%&e) is available! You are running &bv%current%&e. https://www.spigotmc.org/resources/playerparticles.40261/");
+            this.put("update-available", "&eAn update (&bv%new%&e) is available!");
 
             this.put("#26", "GUI Messages");
             this.put("gui-disabled", "&cThe server administrator has disabled the GUI!");
@@ -246,14 +246,14 @@ public class EnglishLocale implements Locale {
             this.put("gui-color-unavailable", "&c");
 
             this.put("#28", "GUI Info Messages");
-            this.put("gui-commands-info", "Find info about commands with &b/pp help");
+            this.put("gui-commands-info", "Find info about commands with &b/fx help");
             this.put("gui-back-button", "Go Back");
             this.put("gui-next-page-button", "Next Page (%start%/%end%)");
             this.put("gui-previous-page-button", "Previous Page (%start%/%end%)");
             this.put("gui-click-to-load", "Click to load the following %amount% particle(s):");
             this.put("gui-shift-click-to-delete", "Shift click to delete");
             this.put("gui-particle-info", "  - ID: &b%id% &eEffect: &b%effect% &eStyle: &b%style% &eData: &b%data%");
-            this.put("gui-playerparticles", "PlayerParticles");
+            this.put("gui-playerparticles", "Effects");
             this.put("gui-active-particles", "Active Particles: &b%amount%");
             this.put("gui-saved-groups", "Saved Groups: &b%amount%");
             this.put("gui-fixed-effects", "Fixed Effects: &b%amount%");

@@ -39,7 +39,7 @@ public class HelpCommandModule implements CommandModule {
     }
 
     public boolean requiresEffectsAndStyles() {
-        return false;
+        return true;
     }
 
     public boolean canConsoleExecute() {

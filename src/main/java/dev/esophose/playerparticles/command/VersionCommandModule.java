@@ -11,8 +11,10 @@ public class VersionCommandModule implements CommandModule {
 
     public void onCommandExecute(PPlayer pplayer, String[] args) {
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
-        localeManager.sendCustomMessage(pplayer, ChatColor.YELLOW + "Running PlayerParticles " + ChatColor.AQUA + "v" + PlayerParticles.getInstance().getDescription().getVersion());
+        localeManager.sendCustomMessage(pplayer, ChatColor.YELLOW + "Running Effects " + ChatColor.AQUA + "v" + PlayerParticles.getInstance().getDescription().getVersion());
         localeManager.sendCustomMessage(pplayer, ChatColor.YELLOW + "Plugin created by: " + ChatColor.AQUA + "Esophose");
+        localeManager.sendCustomMessage(pplayer, ChatColor.YELLOW + "Forked for Overcast Community");
+
     }
 
     public List<String> onTabComplete(PPlayer pplayer, String[] args) {
