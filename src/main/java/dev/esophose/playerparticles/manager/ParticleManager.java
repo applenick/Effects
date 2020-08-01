@@ -1,6 +1,7 @@
 package dev.esophose.playerparticles.manager;
 
 import dev.esophose.playerparticles.PlayerParticles;
+import dev.esophose.playerparticles.hook.PGMHook;
 import dev.esophose.playerparticles.hook.WorldGuardHook;
 import dev.esophose.playerparticles.manager.ConfigurationManager.Setting;
 import dev.esophose.playerparticles.particles.ConsolePPlayer;
@@ -213,6 +214,11 @@ public class ParticleManager extends Manager implements Listener, Runnable {
 
             if (!pplayer.isInAllowedRegion())
                 return;
+            
+            // Display Effects only to Observers
+            if(PGMHook.enabled() && PGMHook.isParticipating(pplayer.getPlayer())) {
+            	return;
+            }
 
             if (particle.getStyle().canToggleWithMovement() && pplayer.isMoving()) {
                 switch (Setting.TOGGLE_ON_MOVE.getString().toUpperCase()) {
