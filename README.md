@@ -1,7 +1,7 @@
-# PlayerParticles
+# Effects
 
-A Spigot particles plugin with more customizability than any other. Create particles around players 
-or blocks with any particle effect in the game with a plethora of skillfully crafted styles.
+A Spigot particles plugin forked to work with [PGM](https://github.com/PGMDev/PGM)
+
 
 ### Wiki
 
