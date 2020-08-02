@@ -21,8 +21,11 @@ public class SpigotParticleSpawner extends ParticleSpawner {
         if (particleEffect.hasProperty(ParticleProperty.REQUIRES_MATERIAL_DATA))
             throw new ParticleDataException("This particle effect requires additional data");
 
-        for (Player player : this.getPlayersInRange(center, isLongRange, owner))
-            player.spawnParticle(particleEffect.getSpigotEnum(), center.getX(), center.getY(), center.getZ(), amount, offsetX, offsetY, offsetZ, speed);
+        for (Player player : this.getPlayersInRange(center, isLongRange, owner)) {
+        	if(player.canSee(owner)) {
+                player.spawnParticle(particleEffect.getSpigotEnum(), center.getX(), center.getY(), center.getZ(), amount, offsetX, offsetY, offsetZ, speed);
+        	}
+        }
     }
 
     @Override
