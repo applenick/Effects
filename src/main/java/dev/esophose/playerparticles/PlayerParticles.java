@@ -9,6 +9,7 @@ package dev.esophose.playerparticles;
 import dev.esophose.playerparticles.gui.hook.PlayerChatHook;
 import dev.esophose.playerparticles.hook.ParticlePlaceholderExpansion;
 import dev.esophose.playerparticles.hook.PlaceholderAPIHook;
+import dev.esophose.playerparticles.hook.WorldGuardHook;
 import dev.esophose.playerparticles.manager.CommandManager;
 import dev.esophose.playerparticles.manager.ConfigurationManager;
 import dev.esophose.playerparticles.manager.ConfigurationManager.Setting;
@@ -45,7 +46,7 @@ public class PlayerParticles extends JavaPlugin {
     /*
      * The plugin managers
      */
-    private Map<Class<?>, Manager> managers;
+    private final Map<Class<?>, Manager> managers;
 
     public PlayerParticles() {
         INSTANCE = this;
@@ -90,6 +91,12 @@ public class PlayerParticles extends JavaPlugin {
         this.managers.clear();
     }
 
+    @Override
+    public void onLoad() {
+        if (NMSUtil.isSpigot())
+            WorldGuardHook.initialize();
+    }
+    
     /**
      * Gets a manager instance
      *
@@ -120,16 +127,16 @@ public class PlayerParticles extends JavaPlugin {
         this.managers.values().forEach(Manager::disable);
         this.managers.values().forEach(Manager::reload);
 
+        this.getManager(ConfigurationManager.class);
+        this.getManager(LocaleManager.class);
+        this.getManager(DataManager.class);
+        this.getManager(DataMigrationManager.class);
+        this.getManager(PermissionManager.class);
         this.getManager(CommandManager.class);
         this.getManager(ParticleStyleManager.class);
         this.getManager(ParticleGroupPresetManager.class);
         this.getManager(ConfigurationManager.class);
-        this.getManager(DataManager.class);
-        this.getManager(DataMigrationManager.class);
         this.getManager(ParticleManager.class);
-        this.getManager(LocaleManager.class);
-        this.getManager(ConfigurationManager.class);
-        this.getManager(PermissionManager.class);
         this.getManager(PluginUpdateManager.class);
     }
 

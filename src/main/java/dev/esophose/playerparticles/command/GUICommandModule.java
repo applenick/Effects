@@ -7,12 +7,17 @@ import dev.esophose.playerparticles.manager.LocaleManager;
 import dev.esophose.playerparticles.manager.PermissionManager;
 import dev.esophose.playerparticles.particles.PPlayer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import org.bukkit.Bukkit;
+import org.bukkit.util.StringUtil;
 
 public class GUICommandModule implements CommandModule {
 
     public void onCommandExecute(PPlayer pplayer, String[] args) {
+        this.onCommandExecute(pplayer, args, true);
+    }
+
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean openedFromGuiCommand) {
         PermissionManager permissionManager = PlayerParticles.getInstance().getManager(PermissionManager.class);
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
         GuiManager guiManager = PlayerParticles.getInstance().getManager(GuiManager.class);
@@ -22,22 +27,18 @@ public class GUICommandModule implements CommandModule {
             return;
         }
 
-        boolean byDefault = false;
-        if (args.length > 0 && args[0].equals("_byDefault_")) // Why is this still the way I'm doing this smh
-            byDefault = true;
-
         if (guiManager.isGuiDisabled()) {
-            if (byDefault) {
-                localeManager.sendMessage(pplayer, "command-error-unknown");
-            } else {
+            if (openedFromGuiCommand) {
                 localeManager.sendMessage(pplayer, "gui-disabled");
+            } else {
+                localeManager.sendMessage(pplayer, "command-error-unknown");
             }
             return;
         }
 
         boolean hasEffectsAndStyles = !permissionManager.getEffectsUserHasPermissionFor(pplayer).isEmpty() && !permissionManager.getStylesUserHasPermissionFor(pplayer).isEmpty();
         if (!Setting.GUI_PRESETS_ONLY.getBoolean() && (Setting.GUI_REQUIRE_EFFECTS_AND_STYLES.getBoolean() && !hasEffectsAndStyles)) {
-            if (byDefault) {
+            if (openedFromGuiCommand) {
                 localeManager.sendMessage(pplayer, "command-error-missing-effects-or-styles");
             } else {
                 localeManager.sendMessage(pplayer, "command-error-unknown");
@@ -45,11 +46,20 @@ public class GUICommandModule implements CommandModule {
             return;
         }
 
-        Bukkit.getScheduler().runTask(PlayerParticles.getInstance(), () -> guiManager.openDefault(pplayer));
+        if (args.length > 0 && args[0].equalsIgnoreCase("presets")) {
+            guiManager.openPresetGroups(pplayer);
+        } else {
+            guiManager.openDefault(pplayer);
+        }
     }
 
     public List<String> onTabComplete(PPlayer pplayer, String[] args) {
-        return new ArrayList<>();
+        List<String> completions = new ArrayList<>();
+        if (args.length == 1) {
+            List<String> possibilities = Collections.singletonList("presets");
+            StringUtil.copyPartialMatches(args[0], possibilities, completions);
+        }
+        return completions;
     }
 
     public String getName() {

@@ -5,10 +5,12 @@ import dev.esophose.playerparticles.config.CommentedFileConfiguration;
 import dev.esophose.playerparticles.util.ParticleUtils;
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.bukkit.Material;
@@ -39,6 +41,7 @@ public class ConfigurationManager extends Manager {
         GUI_REQUIRE_PERMISSION("gui-require-permission", false, "If the GUI should require the permission playerparticles.gui to open"),
         GUI_REQUIRE_EFFECTS_AND_STYLES("gui-require-effects-and-styles", true, "If the GUI should require the player to have permission for at least", "one effect and one style to be able to open the GUI"),
         GUI_PRESETS_ONLY("gui-presets-only", false, "If true, only the preset groups will be available in the GUI", "Permissions to open the GUI will change to only open if the user has any preset groups available"),
+        GUI_PRESETS_HIDE_PARTICLES_DESCRIPTIONS("gui-presets-hide-particles-descriptions", false, "If true, the particle descriptions in the item lore for preset groups will be hidden"),
         GUI_CLOSE_AFTER_GROUP_SELECTED("gui-close-after-group-selected", true, "If true, the GUI will close after selecting a group (either saved or preset)"),
         GUI_BUTTON_SOUND("gui-button-sound", true, "If clicking a GUI button should make a noise"),
         TOGGLE_ON_MOVE("toggle-on-move", "NONE", "Valid values: DISPLAY_FEET, DISPLAY_NORMAL, DISPLAY_OVERHEAD, HIDE, NONE", "DISPLAY_FEET will display particles using the feet style while moving", "DISPLAY_NORMAL will display particles using the normal style while moving", "DISPLAY_OVERHEAD will display particles using the overhead style while moving", "HIDE will hide particles while moving", "NONE will make this setting do nothing", "Note: You can change what styles follow this setting in their individual setting files"),
@@ -59,8 +62,8 @@ public class ConfigurationManager extends Manager {
 
         WORLDGUARD_SETTINGS("worldguard-settings", null, "Settings for WorldGuard", "If WorldGuard is not installed, these settings will do nothing"),
         WORLDGUARD_USE_ALLOWED_REGIONS("worldguard-settings.use-allowed-regions", false, "If true, particles will only be able to spawn if they are in an allowed region and not a disallowed region", "If false, particles will be able to spawn as long as they are not in a disallowed region"),
-        WORLDGUARD_ALLOWED_REGIONS("worldguard-settings.allowed-regions", Arrays.asList("example_region_1", "example_region_2"), "Regions that particles will be allowed to spawn in"),
-        WORLDGUARD_DISALLOWED_REGIONS("worldguard-settings.disallowed-regions", Arrays.asList("example_region_3", "example_region_4"), "Regions that particles will be blocked from spawning in", "This overrides allowed regions if they overlap"),
+        WORLDGUARD_ALLOWED_REGIONS("worldguard-settings.allowed-regions", Arrays.asList("example_region_1", "example_region_2"), "Regions that particles will be allowed to spawn in", "WARNING: This setting is deprecated in favor of region flags, and will be removed in a future update."),
+        WORLDGUARD_DISALLOWED_REGIONS("worldguard-settings.disallowed-regions", Arrays.asList("example_region_3", "example_region_4"), "Regions that particles will be blocked from spawning in", "This overrides allowed regions if they overlap", "WARNING: This setting is deprecated in favor of region flags, and will be removed in a future update."),
         WORLDGUARD_CHECK_INTERVAL("worldguard-settings.check-interval", 10, "How often to check if a player is in a region that allows spawning particles", "Measured in ticks"),
         WORLDGUARD_ENABLE_BYPASS_PERMISSION("worldguard-settings.enable-bypass-permission", false, "If true, the permission playerparticles.worldguard.bypass will allow", "the player to bypass the region requirements"),
 
@@ -222,10 +225,16 @@ public class ConfigurationManager extends Manager {
         }
 
         /**
-         * @return true if this setting is only a section and doesn't contain an actual value
+         * @return true if a setting is still its default value, otherwise false
          */
-        public boolean isSection() {
-            return this.defaultValue == null;
+        public boolean isDefault() {
+            this.loadValue();
+
+            // Don't care about list ordering
+            if (this.defaultValue instanceof Collection && this.value instanceof Collection)
+                return (((Collection<?>) this.defaultValue).containsAll((Collection<?>) this.value));
+
+            return Objects.equals(this.defaultValue, this.value);
         }
 
         /**
@@ -269,6 +278,15 @@ public class ConfigurationManager extends Manager {
 
         if (changed)
             this.configuration.save();
+        
+        // Legacy nag: WorldGuard Regions
+        if (!(Setting.WORLDGUARD_ALLOWED_REGIONS.isDefault() && Setting.WORLDGUARD_DISALLOWED_REGIONS.isDefault())) {
+            Arrays.asList(
+                    "It looks like you're using the 'allowed-regions' or 'disallowed-regions' settings.",
+                    "These settings are deprecated and will be removed in a future update.",
+                    "As an alternative, consider using the newer and more flexible 'player-particles' WorldGuard region flag."
+            ).forEach(PlayerParticles.getInstance().getLogger()::warning);
+        }
     }
 
     @Override

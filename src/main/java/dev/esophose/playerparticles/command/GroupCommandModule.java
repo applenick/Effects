@@ -7,7 +7,7 @@ import dev.esophose.playerparticles.manager.ParticleGroupPresetManager;
 import dev.esophose.playerparticles.manager.PermissionManager;
 import dev.esophose.playerparticles.particles.PPlayer;
 import dev.esophose.playerparticles.particles.ParticleGroup;
-import dev.esophose.playerparticles.particles.ParticleGroupPreset;
+import dev.esophose.playerparticles.particles.preset.ParticleGroupPreset;
 import dev.esophose.playerparticles.particles.ParticlePair;
 import dev.esophose.playerparticles.util.StringPlaceholders;
 import java.util.ArrayList;
@@ -151,13 +151,11 @@ public class GroupCommandModule implements CommandModule {
             
             group = presetGroup.getGroup();
             isPreset = true;
-        }
-
-        if (!group.canPlayerUse(pplayer)) {
+        } else if (!group.canPlayerUse(pplayer)) {
             localeManager.sendMessage(pplayer, "group-no-permission", StringPlaceholders.single("group", groupName));
             return;
         }
-        
+
         // Empty out the active group and fill it with clones from the target group
         ParticleGroup activeGroup = pplayer.getActiveParticleGroup();
         activeGroup.getParticles().clear();
