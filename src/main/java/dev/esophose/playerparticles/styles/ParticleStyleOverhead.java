@@ -16,7 +16,7 @@ public class ParticleStyleOverhead extends DefaultParticleStyle {
     private int particlesPerTick;
 
     public ParticleStyleOverhead() {
-        super("overhead", true, false, -0.5);
+        super("overhead", true, false, -0.5, false);
     }
 
     @Override

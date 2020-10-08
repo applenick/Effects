@@ -170,8 +170,12 @@ public class ParticleManager extends Manager implements Listener, Runnable {
             // Don't show their particles if they are in spectator mode
             // Don't spawn particles if the world doesn't allow it
             if (player != null && (NMSUtil.getVersionNumber() < 8 || player.getGameMode() != GameMode.SPECTATOR) && permissionManager.isWorldEnabled(player.getWorld().getName()))
-                for (ParticlePair particles : pplayer.getActiveParticles())
-                    this.displayParticles(pplayer, particles, player.getLocation().clone().add(0, 1, 0));
+                for (ParticlePair particles : pplayer.getActiveParticles()) {
+                	// Work around, even though player may still have particles enabled. Will not display unless has permission
+                	if(permissionManager.hasEffectPermission(pplayer, particles.getEffect())) {
+                		this.displayParticles(pplayer, particles, player.getLocation().clone().add(0, 1, 0));
+                	}
+                }
             
             // Loop for FixedParticleEffects
             // Don't spawn particles if the world doesn't allow it
@@ -216,7 +220,7 @@ public class ParticleManager extends Manager implements Listener, Runnable {
                 return;
             
             // Display Effects only to Observers
-            if(PGMHook.enabled() && PGMHook.isParticipating(pplayer.getPlayer())) {
+            if(PGMHook.enabled() && PGMHook.isParticipating(pplayer.getPlayer()) && !particle.getStyle().isEventBased()) {
             	return;
             }
 

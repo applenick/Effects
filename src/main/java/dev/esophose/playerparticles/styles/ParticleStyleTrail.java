@@ -23,7 +23,7 @@ public class ParticleStyleTrail extends DefaultParticleStyle implements Listener
     private double speed;
 
     public ParticleStyleTrail() {
-        super("trail", false, false, 0);
+        super("trail", false, false, 0, true);
     }
 
     @Override

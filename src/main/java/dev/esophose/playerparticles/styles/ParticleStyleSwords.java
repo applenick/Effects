@@ -34,7 +34,7 @@ public class ParticleStyleSwords extends DefaultParticleStyle implements Listene
     }
 
     public ParticleStyleSwords() {
-        super("swords", false, false, 0);
+        super("swords", false, false, 0, true);
     }
 
     @Override

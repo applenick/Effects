@@ -22,7 +22,7 @@ public class ParticleStyleMove extends DefaultParticleStyle implements Listener 
     private int multiplier;
 
     public ParticleStyleMove() {
-        super("move", false, false, 0);
+        super("move", false, false, 0, true);
     }
 
     @Override

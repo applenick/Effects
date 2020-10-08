@@ -24,7 +24,7 @@ public class ParticleStyleBlockBreak extends DefaultParticleStyle implements Lis
     private double particleSpeed;
 
     public ParticleStyleBlockBreak() {
-        super("blockbreak", false, false, 0);
+        super("blockbreak", false, false, 0, true);
     }
 
     @Override

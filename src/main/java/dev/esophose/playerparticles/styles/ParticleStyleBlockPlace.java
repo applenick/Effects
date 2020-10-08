@@ -24,7 +24,7 @@ public class ParticleStyleBlockPlace extends DefaultParticleStyle implements Lis
     private double particleSpeed;
 
     public ParticleStyleBlockPlace() {
-        super("blockplace", false, false, 0);
+        super("blockplace", false, false, 0, true);
     }
 
     @Override

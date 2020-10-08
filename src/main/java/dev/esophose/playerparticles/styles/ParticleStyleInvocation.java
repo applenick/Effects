@@ -22,7 +22,7 @@ public class ParticleStyleInvocation extends DefaultParticleStyle {
     private double speedMultiplier;
 
     public ParticleStyleInvocation() {
-        super("invocation", true, true, 0.5);
+        super("invocation", true, true, 0.5, false);
     }
 
     public List<PParticle> getParticles(ParticlePair particle, Location location) {

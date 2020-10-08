@@ -13,7 +13,7 @@ public class ParticleStyleChains extends DefaultParticleStyle {
     private int chainParticleAmount;
 
     public ParticleStyleChains() {
-        super("chains", true, true, 0);
+        super("chains", true, true, 0, false);
     }
 
     @Override

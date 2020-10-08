@@ -44,7 +44,7 @@ public class ParticleStyleVortex extends DefaultParticleStyle {
     private int maxStep;
 
     public ParticleStyleVortex() {
-        super("vortex", true, true, 0.5);
+        super("vortex", true, true, 0.5, false);
     }
 
     @Override

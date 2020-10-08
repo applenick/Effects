@@ -92,6 +92,13 @@ public interface ParticleStyle {
     default boolean hasLongRangeVisibility() {
         return false;
     }
+    
+    /**
+     * @return true if the particle is only displayed when a specific event is called
+     */
+    default boolean isEventBased() {
+    	return false;
+    }
 
     /**
      * Gets the ParticleStyle with the name given, returns null if not found

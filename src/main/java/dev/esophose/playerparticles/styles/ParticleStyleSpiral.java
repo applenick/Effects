@@ -18,7 +18,7 @@ public class ParticleStyleSpiral extends DefaultParticleStyle {
     private double radius = 0.8;
 
     public ParticleStyleSpiral() {
-        super("spiral", true, true, 0);
+        super("spiral", true, true, 0, false);
     }
 
     @Override

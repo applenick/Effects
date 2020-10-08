@@ -13,7 +13,7 @@ public class ParticleStyleThick extends DefaultParticleStyle {
     private int multiplier;
 
     public ParticleStyleThick() {
-        super("thick", true, true, 0);
+        super("thick", true, true, 0, false);
     }
 
     @Override

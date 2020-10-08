@@ -66,6 +66,7 @@ public class ParticleGroupPresetManager extends Manager {
             try {
                 Map<Integer, ParticlePair> particles = new HashMap<>();
                 String displayName = "";
+                String lore = "";
                 Material guiIcon = Material.ENDER_CHEST;
                 String permission = "";
                 boolean allowPermissionOverride = false;
@@ -85,6 +86,11 @@ public class ParticleGroupPresetManager extends Manager {
                     
                     if (stringId.equalsIgnoreCase("permission")) {
                         permission = groupSection.getString(stringId);
+                        continue;
+                    }
+                    
+                    if(stringId.equalsIgnoreCase("lore")) {
+                    	lore = groupSection.getString(stringId);
                         continue;
                     }
                     
@@ -153,7 +159,7 @@ public class ParticleGroupPresetManager extends Manager {
                     particles.put(id, new ParticlePair(null, id, effect, style, itemData, blockData, colorData, noteColorData));
                 }
 
-                this.presetGroups.add(new ParticleGroupPreset(displayName, guiIcon, permission, allowPermissionOverride, new ParticleGroup(groupName, particles)));
+                this.presetGroups.add(new ParticleGroupPreset(displayName, guiIcon, permission, allowPermissionOverride, new ParticleGroup(groupName, particles), lore));
             } catch (Exception ex) {
                 PlayerParticles.getInstance().getLogger().severe("An error occurred while parsing the " + FILE_NAME + " file!");
             }

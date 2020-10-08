@@ -18,7 +18,7 @@ public class ParticleStyleBeam extends DefaultParticleStyle {
     private double radius;
 
     public ParticleStyleBeam() {
-        super("beam", true, true, 0.5);
+        super("beam", true, true, 0.5, false);
     }
 
     @Override

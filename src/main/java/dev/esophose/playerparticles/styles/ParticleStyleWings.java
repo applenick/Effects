@@ -19,7 +19,7 @@ public class ParticleStyleWings extends DefaultParticleStyle {
     private int spawnDelay;
 
     public ParticleStyleWings() {
-        super("wings", false, true, 0);
+        super("wings", false, true, 0, false);
     }
 
     @Override

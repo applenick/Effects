@@ -7,17 +7,19 @@ import org.bukkit.Material;
 public class ParticleGroupPreset {
 
     private String displayName;
+    private String lore;
     private Material guiIcon;
     private String permission;
     private boolean allowPermissionOverride;
     private ParticleGroup group;
     
-    public ParticleGroupPreset(String displayName, Material guiIcon, String permission, boolean allowPermissionOverride, ParticleGroup group) {
+    public ParticleGroupPreset(String displayName, Material guiIcon, String permission, boolean allowPermissionOverride, ParticleGroup group, String lore) {
         this.displayName = displayName;
         this.guiIcon = guiIcon;
         this.permission = permission;
         this.allowPermissionOverride = allowPermissionOverride;
         this.group = group;
+        this.lore = lore;
     }
     
     /**
@@ -63,6 +65,10 @@ public class ParticleGroupPreset {
      */
     public ParticleGroup getGroup() {
         return this.group;
+    }
+    
+    public String getLore() {
+    	return lore;
     }
 
 }

@@ -13,6 +13,8 @@ import dev.esophose.playerparticles.particles.ParticleGroupPreset;
 import dev.esophose.playerparticles.particles.ParticlePair;
 import dev.esophose.playerparticles.util.ParticleUtils;
 import dev.esophose.playerparticles.util.StringPlaceholders;
+import net.md_5.bungee.api.ChatColor;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -39,17 +41,23 @@ public class GuiInventoryLoadPresetGroups extends GuiInventory {
             List<ParticlePair> particles = new ArrayList<>(group.getGroup().getParticles().values());
             particles.sort(Comparator.comparingInt(ParticlePair::getId));
 
-            String[] lore = new String[particles.size() + 1];
-            lore[0] = localeManager.getLocaleMessage("gui-color-subtext") + localeManager.getLocaleMessage("gui-click-to-load", StringPlaceholders.single("amount", particles.size()));
-            int i = 1;
-            for (ParticlePair particle : particles) {
-                StringPlaceholders stringPlaceholders = StringPlaceholders.builder("id", particle.getId())
-                        .addPlaceholder("effect", ParticleUtils.formatName(particle.getEffect().getName()))
-                        .addPlaceholder("style", ParticleUtils.formatName(particle.getStyle().getName()))
-                        .addPlaceholder("data", particle.getDataString())
-                        .build();
-                lore[i] = localeManager.getLocaleMessage("gui-color-info") + localeManager.getLocaleMessage("gui-particle-info", stringPlaceholders);
-                i++;
+            String[] lore;
+            if(group.getLore() == null || group.getLore().isEmpty()) {
+            	lore = new String[particles.size() + 1];
+            	lore[0] = localeManager.getLocaleMessage("gui-color-subtext") + localeManager.getLocaleMessage("gui-click-to-load", StringPlaceholders.single("amount", particles.size()));
+            	int i = 1;
+            	for (ParticlePair particle : particles) {
+            		StringPlaceholders stringPlaceholders = StringPlaceholders.builder("id", particle.getId())
+            				.addPlaceholder("effect", ParticleUtils.formatName(particle.getEffect().getName()))
+            				.addPlaceholder("style", ParticleUtils.formatName(particle.getStyle().getName()))
+            				.addPlaceholder("data", particle.getDataString())
+            				.build();
+            		lore[i] = localeManager.getLocaleMessage("gui-color-info") + localeManager.getLocaleMessage("gui-particle-info", stringPlaceholders);
+            		i++;
+            	}
+            } else {
+            	lore = new String[1];
+            	lore[0] = ChatColor.translateAlternateColorCodes('&', group.getLore());
             }
 
             // Load Group Buttons

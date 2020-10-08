@@ -21,7 +21,7 @@ public class ParticleStylePulse extends DefaultParticleStyle {
     private double speedMultiplier;
 
     public ParticleStylePulse() {
-        super("pulse", true, true, 0.5);
+        super("pulse", true, true, 0.5, false);
     }
 
     @Override

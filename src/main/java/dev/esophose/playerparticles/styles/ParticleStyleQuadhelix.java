@@ -20,7 +20,7 @@ public class ParticleStyleQuadhelix extends DefaultParticleStyle {
     private int maxStepY;
 
     public ParticleStyleQuadhelix() {
-        super("quadhelix", true, true, 0);
+        super("quadhelix", true, true, 0, false);
     }
 
     @Override

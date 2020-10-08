@@ -25,15 +25,17 @@ public abstract class DefaultParticleStyle implements ParticleStyle {
     private boolean canBeFixed;
     private boolean canToggleWithMovement;
     private boolean canToggleWithCombat;
+    private boolean isEventBased;
     private double fixedEffectOffset;
     private Material guiIconMaterial;
 
-    public DefaultParticleStyle(String internalStyleName, boolean canBeFixedByDefault, boolean canToggleWithMovementByDefault, double fixedEffectOffsetByDefault) {
+    public DefaultParticleStyle(String internalStyleName, boolean canBeFixedByDefault, boolean canToggleWithMovementByDefault, double fixedEffectOffsetByDefault, boolean isEventBased) {
         this.internalStyleName = internalStyleName;
         this.canBeFixedByDefault = canBeFixedByDefault;
         this.canToggleWithMovementByDefault = canToggleWithMovementByDefault;
         this.canToggleWithCombatByDefault = true;
         this.fixedEffectOffsetByDefault = fixedEffectOffsetByDefault;
+        this.isEventBased = isEventBased;
         this.playerParticles = PlayerParticles.getInstance();
 
         this.setDefaultSettings();
@@ -145,6 +147,11 @@ public abstract class DefaultParticleStyle implements ParticleStyle {
     @Override
     public final double getFixedEffectOffset() {
         return this.fixedEffectOffset;
+    }
+    
+    @Override
+    public final boolean isEventBased() {
+    	return this.isEventBased;
     }
 
     /**

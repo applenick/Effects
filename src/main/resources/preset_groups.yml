@@ -43,6 +43,7 @@
 
 raincloud:
   display-name: 'Raincloud'
+  lore: "&7Seems like a rainy day"
   gui-icon: 'ENDER_CHEST'
   permission: ''
   allow-permission-override: false
@@ -56,6 +57,7 @@ raincloud:
     data: ''
 rainbows:
   display-name: 'Rainbows'
+  lore: "&6Taste the rainbow"
   gui-icon: 'ENDER_CHEST'
   permission: ''
   allow-permission-override: false
@@ -69,6 +71,7 @@ rainbows:
     data: 'rainbow'
 angel:
   display-name: 'Angel'
+  lore: "Fly you fools!"
   gui-icon: 'ENDER_CHEST'
   permission: ''
   allow-permission-override: false

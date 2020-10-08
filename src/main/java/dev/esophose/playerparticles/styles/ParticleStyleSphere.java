@@ -15,7 +15,7 @@ public class ParticleStyleSphere extends DefaultParticleStyle {
     private double radius;
 
     public ParticleStyleSphere() {
-        super("sphere", true, true, 0);
+        super("sphere", true, true, 0, false);
     }
 
     @Override

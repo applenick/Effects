@@ -29,7 +29,7 @@ public class ParticleStyleTeleport extends DefaultParticleStyle implements Liste
     private double speed;
 
     public ParticleStyleTeleport() {
-        super("teleport", false, false, 0);
+        super("teleport", false, false, 0, true);
     }
 
     @Override
