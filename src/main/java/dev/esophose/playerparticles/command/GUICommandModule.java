@@ -12,7 +12,7 @@ import org.bukkit.Bukkit;
 
 public class GUICommandModule implements CommandModule {
 
-    public void onCommandExecute(PPlayer pplayer, String[] args) {
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean force) {
         PermissionManager permissionManager = PlayerParticles.getInstance().getManager(PermissionManager.class);
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
         GuiManager guiManager = PlayerParticles.getInstance().getManager(GuiManager.class);

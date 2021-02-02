@@ -25,7 +25,11 @@ import org.bukkit.util.StringUtil;
 
 public class AddCommandModule implements CommandModule {
 
-    public void onCommandExecute(PPlayer pplayer, String[] args) {
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean force) {
+        if(!canExecuteCommand(pplayer, true, force)) {
+        	return;
+        }
+    	
         if (args.length < 2) {
             CommandModule.printUsage(pplayer, this);
             return;

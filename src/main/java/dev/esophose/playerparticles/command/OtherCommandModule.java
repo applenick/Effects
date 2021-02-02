@@ -21,7 +21,7 @@ public class OtherCommandModule implements CommandModuleSecondary {
     public void onCommandExecute(CommandSender sender, String[] args) {
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
         PermissionManager permissionManager = PlayerParticles.getInstance().getManager(PermissionManager.class);
-
+        
         if (!permissionManager.canOverride(sender)) {
             localeManager.sendMessage(sender, "other-no-permission");
             return;
@@ -56,7 +56,7 @@ public class OtherCommandModule implements CommandModuleSecondary {
             localeManager.sendMessage(sender, "other-success", StringPlaceholders.single("player", other.getName()));
             
             String[] cmdArgs = Arrays.copyOfRange(args, 2, args.length);
-            commandModule.onCommandExecute(otherPPlayer, cmdArgs);
+            commandModule.onCommandExecute(otherPPlayer, cmdArgs, true);
         });
     }
 

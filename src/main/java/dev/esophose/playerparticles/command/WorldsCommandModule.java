@@ -10,9 +10,14 @@ import java.util.List;
 
 public class WorldsCommandModule implements CommandModule {
 
-    public void onCommandExecute(PPlayer pplayer, String[] args) {
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean force) {
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
         PermissionManager permissionManager = PlayerParticles.getInstance().getManager(PermissionManager.class);
+        
+        if(!canExecuteCommand(pplayer, true, force)) {
+        	return;
+        }
+        
         if (permissionManager.getDisabledWorlds() == null || permissionManager.getDisabledWorlds().isEmpty()) {
             localeManager.sendMessage(pplayer, "disabled-worlds-none");
             return;

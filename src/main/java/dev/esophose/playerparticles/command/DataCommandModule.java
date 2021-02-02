@@ -13,9 +13,9 @@ import org.bukkit.util.StringUtil;
 
 public class DataCommandModule implements CommandModule {
 
-    public void onCommandExecute(PPlayer pplayer, String[] args) {
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean force) {
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
-
+        
         if (args.length > 0) {
             ParticleEffect effect = ParticleEffect.fromName(args[0]);
             if (effect == null) {

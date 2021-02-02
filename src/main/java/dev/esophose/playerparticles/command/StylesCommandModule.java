@@ -11,8 +11,12 @@ import org.bukkit.entity.Player;
 
 public class StylesCommandModule implements CommandModule {
 
-    public void onCommandExecute(PPlayer pplayer, String[] args) {
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean force) {
         Player p = pplayer.getPlayer();
+        
+        if(!canExecuteCommand(pplayer, true, force)) {
+        	return;
+        }
 
         List<String> styleNames = PlayerParticles.getInstance().getManager(PermissionManager.class).getStyleNamesUserHasPermissionFor(pplayer);
         StringBuilder toSend = new StringBuilder();

@@ -15,7 +15,7 @@ import org.bukkit.util.StringUtil;
 
 public class ResetCommandModule implements CommandModule {
 
-    public void onCommandExecute(PPlayer pplayer, String[] args) {
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean force) {
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
 
         boolean isConsole = pplayer.getPlayer() == null;

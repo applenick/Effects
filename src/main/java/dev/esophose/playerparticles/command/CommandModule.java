@@ -14,7 +14,11 @@ public interface CommandModule {
      * @param pplayer The PPlayer who executed this command
      * @param args The arguments to this command
      */
-    void onCommandExecute(PPlayer pplayer, String[] args);
+	default void onCommandExecute(PPlayer pplayer, String[] args) {
+		onCommandExecute(pplayer, args, false);
+	}
+	
+    void onCommandExecute(PPlayer pplayer, String[] args, boolean forced);
 
     /**
      * Called when a player tries to tab complete this command
@@ -89,6 +93,16 @@ public interface CommandModule {
                     .build();
             localeManager.sendSimpleMessage(pplayer, "command-descriptions-help-2", placeholders);
         }
+    }
+    
+    /**
+     * This is just for convenience lol
+     * @param player
+     * @param check Whether to check for permission node, false to always allow command
+     * @return
+     */
+    default boolean canExecuteCommand(PPlayer player, boolean check, boolean force) {
+    	return check ? player.getPlayer().hasPermission("fx.command") || force : true;
     }
 
 }

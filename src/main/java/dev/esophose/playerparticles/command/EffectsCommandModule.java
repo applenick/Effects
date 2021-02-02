@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class EffectsCommandModule implements CommandModule {
 
-    public void onCommandExecute(PPlayer pplayer, String[] args) {
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean force) {
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
 
         Player p = pplayer.getPlayer();

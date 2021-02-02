@@ -13,7 +13,7 @@ import org.bukkit.Bukkit;
 
 public class ReloadCommandModule implements CommandModule {
 
-    public void onCommandExecute(PPlayer pplayer, String[] args) {
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean force) {
         PlayerParticles playerParticles = PlayerParticles.getInstance();
         Bukkit.getScheduler().runTask(playerParticles, () -> {
             LocaleManager localeManager = playerParticles.getManager(LocaleManager.class);

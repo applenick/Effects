@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ToggleCommandModule implements CommandModule {
 
-    public void onCommandExecute(PPlayer pplayer, String[] args) {
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean force) {
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
         boolean canSee = pplayer.canSeeParticles();
         PlayerParticlesAPI.getInstance().togglePlayerParticleVisibility(pplayer.getPlayer(), canSee);

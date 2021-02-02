@@ -21,9 +21,13 @@ import org.bukkit.util.StringUtil;
 
 public class GroupCommandModule implements CommandModule {
 
-    public void onCommandExecute(PPlayer pplayer, String[] args) {
+    public void onCommandExecute(PPlayer pplayer, String[] args, boolean force) {
         LocaleManager localeManager = PlayerParticles.getInstance().getManager(LocaleManager.class);
 
+        if(!canExecuteCommand(pplayer, true, force)) {
+        	return;
+        }
+        
         List<String> validCommands = Arrays.asList("save", "load", "remove", "info", "list");
         if (args.length == 0 || !validCommands.contains(args[0])) {
             localeManager.sendMessage(pplayer, "command-description-group-save");
