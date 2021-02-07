@@ -17,6 +17,10 @@ public class PGMHook {
 		return enabled = Bukkit.getPluginManager().getPlugin("PGM") != null;
 	}
 	
+	public static boolean isNicked(Player player) {
+		return PGM.get().getNickRegistry().getNick(player).isPresent();
+	}
+	
 	public static boolean isParticipating(Player player) {
 		Match match = PGM.get().getMatchManager().getMatch(player);
 		if(match != null) {

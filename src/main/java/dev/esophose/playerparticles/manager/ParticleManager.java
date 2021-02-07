@@ -219,6 +219,10 @@ public class ParticleManager extends Manager implements Listener, Runnable {
             if (!pplayer.isInAllowedRegion())
                 return;
             
+            if(PGMHook.isNicked(pplayer.getPlayer())) {
+            	return;
+            }
+            
             // Display Effects only to Observers
             if(PGMHook.enabled() && PGMHook.isParticipating(pplayer.getPlayer()) && !particle.getStyle().isEventBased()) {
             	return;

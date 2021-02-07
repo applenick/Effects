@@ -18,7 +18,7 @@ java {
 }
 
 repositories {
-    mavenCentral()
+  	mavenLocal()
 	jcenter()
 	
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
@@ -26,7 +26,8 @@ repositories {
     maven { url = 'http://repo.extendedclip.com/content/repositories/placeholderapi/' }
     maven { url = 'https://repo.rosewooddev.io/repository/public/' }
     maven { url = 'https://repo.ashcon.app/content/repositories/snapshots' }
-    maven { url 'https://jitpack.io' }
+    maven { url = 'https://jitpack.io' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots'}
     
 }
 
@@ -36,7 +37,7 @@ dependencies {
     compile 'com.zaxxer:HikariCP:3.2.0'
     compile 'org.bstats:bstats-bukkit-lite:1.7'
     compile 'org.codemc.worldguardwrapper:worldguardwrapper:1.1.9-SNAPSHOT'
-    shadow 'tc.oc.pgm:core:0.10-SNAPSHOT'
+    shadow 'tc.oc.pgm:core:0.11-SNAPSHOT'
     shadow 'com.googlecode.json-simple:json-simple:1.1.1'
     shadow 'org.jetbrains:annotations:16.0.2'
     shadow 'me.clip:placeholderapi:2.10.4'
