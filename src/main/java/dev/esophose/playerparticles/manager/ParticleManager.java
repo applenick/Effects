@@ -1,6 +1,9 @@
 package dev.esophose.playerparticles.manager;
 
 import dev.esophose.playerparticles.config.Settings;
+import static dev.esophose.playerparticles.hook.PGMHook.isParticipating;
+
+import dev.esophose.playerparticles.PlayerParticles;
 import dev.esophose.playerparticles.hook.WorldGuardHook;
 import dev.esophose.playerparticles.particles.FixedParticleEffect;
 import dev.esophose.playerparticles.particles.PParticle;
@@ -102,7 +105,7 @@ public class ParticleManager extends Manager implements Listener, Runnable {
      * 
      * @param e The event
      */
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerJoin(PlayerJoinEvent e) {
         // Loads the PPlayer from the database
         PPlayer removed = this.particlePlayers.remove(e.getPlayer().getUniqueId());
@@ -252,6 +255,12 @@ public class ParticleManager extends Manager implements Listener, Runnable {
             return;
 
         if (!pplayer.isInAllowedRegion())
+                return;
+            
+        if(isParticipating(pplayer.getPlayer()))
+                return;
+
+        if (!pplayer.isInAllowedRegion())
             return;
 
         if (pplayer.isInLimitedRegion() && particle.isHiddenWhenLimited())
@@ -336,6 +345,9 @@ public class ParticleManager extends Manager implements Listener, Runnable {
             if ((player != null && ParticleUtils.isPlayerInvisible(player)) || !permissionManager.isWorldEnabled(world.getName()))
                 return;
         }
+        
+        if(pplayer != null && pplayer.getPlayer() != null && isParticipating(pplayer.getPlayer()))
+            return;
 
         for (PParticle pparticle : particles)
             ParticleEffect.display(particle, pparticle, isLongRange, player);

@@ -2,6 +2,8 @@ package dev.esophose.playerparticles.particles.spawning;
 
 import dev.esophose.playerparticles.PlayerParticles;
 import dev.esophose.playerparticles.config.Settings;
+import dev.esophose.playerparticles.hook.PGMHook;
+import dev.esophose.playerparticles.manager.ConfigurationManager.Setting;
 import dev.esophose.playerparticles.manager.ParticleManager;
 import dev.esophose.playerparticles.particles.PPlayer;
 import dev.esophose.playerparticles.particles.ParticleEffect;
@@ -116,6 +118,9 @@ public abstract class ParticleSpawner {
 
         for (PPlayer pplayer : PlayerParticles.getInstance().getManager(ParticleManager.class).getPPlayers().values()) {
             Player p = pplayer.getPlayer();
+            
+            if(p != null && PGMHook.isParticipating(p)) continue;
+            
             if (!canSee(p, owner) || (!pplayer.canSeeOwnParticles() && p == owner && !isLongRange))
                 continue;
 

@@ -2,18 +2,18 @@ name: PlayerParticles
 main: dev.esophose.playerparticles.PlayerParticles
 version: '@version@'
 api-version: '1.13'
-description: Display particles around your player and blocks using customized styles and data!
+description: Display particles around observers!
 author: Esophose
 website: https://www.spigotmc.org/resources/40261/
-softdepend: [PlaceholderAPI, WorldGuard, WorldEdit]
 folia-supported: true
+softdepend: [PlaceholderAPI, WorldGuard, WorldEdit, PGM]
 commands:
   pp:
     description: The main PlayerParticles command. By default, opens the GUI.
-    permission: playerparticles.basecommand
+    permission: effects.command
   ppo:
     description: Allows executing a /pp command for another player.
-    permission: playerparticles.override
+    permission: effects.command.override
 permissions:
   playerparticles.basecommand:
     description: Allows using the PlayerParticles commands
