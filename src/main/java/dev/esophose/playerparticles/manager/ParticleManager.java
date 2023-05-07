@@ -1,5 +1,7 @@
 package dev.esophose.playerparticles.manager;
 
+import static dev.esophose.playerparticles.hook.PGMHook.isParticipating;
+
 import dev.esophose.playerparticles.PlayerParticles;
 import dev.esophose.playerparticles.hook.WorldGuardHook;
 import dev.esophose.playerparticles.manager.ConfigurationManager.Setting;
@@ -104,7 +106,7 @@ public class ParticleManager extends Manager implements Listener, Runnable {
      * 
      * @param e The event
      */
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerJoin(PlayerJoinEvent e) {
         // Loads the PPlayer from the database
         this.rosePlugin.getManager(DataManager.class).getPPlayer(e.getPlayer().getUniqueId(), pplayer -> {
@@ -241,6 +243,9 @@ public class ParticleManager extends Manager implements Listener, Runnable {
 
             if (!pplayer.isInAllowedRegion())
                 return;
+            
+            if(isParticipating(pplayer.getPlayer()))
+                return;
 
             if (particle.getStyle().canToggleWithMovement() && pplayer.isMoving()) {
                 switch (Setting.TOGGLE_ON_MOVE.getString().toUpperCase()) {
@@ -320,6 +325,9 @@ public class ParticleManager extends Manager implements Listener, Runnable {
             if ((player != null && !ParticleUtils.isPlayerVisible(player)) || !permissionManager.isWorldEnabled(world.getName()))
                 return;
         }
+        
+        if(pplayer != null && pplayer.getPlayer() != null && isParticipating(pplayer.getPlayer()))
+            return;
 
         for (PParticle pparticle : particles)
             ParticleEffect.display(particle, pparticle, isLongRange, player);
