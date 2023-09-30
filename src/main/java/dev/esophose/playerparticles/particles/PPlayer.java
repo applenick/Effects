@@ -1,6 +1,7 @@
 package dev.esophose.playerparticles.particles;
 
 import dev.esophose.playerparticles.api.PlayerParticlesAPI;
+import dev.esophose.playerparticles.hook.AFKHook;
 import dev.esophose.playerparticles.manager.ConfigurationManager;
 import dev.esophose.playerparticles.styles.ParticleStyle;
 import dev.esophose.playerparticles.util.ParticleUtils;
@@ -61,6 +62,16 @@ public class PPlayer {
      * If the player is in an allowed region
      */
     private boolean inAllowedRegion;
+    
+    /**
+     * If the player is AFK
+     */
+    private boolean isAFK;
+    
+    /**
+     * If the player is participating in a match
+     */
+    private boolean isParticipating;
 
     /**
      * Constructs a new PPlayer
@@ -82,6 +93,8 @@ public class PPlayer {
         this.isMoving = false;
         this.inCombat = false;
         this.inAllowedRegion = true;
+        this.isAFK = false;
+        this.isParticipating = false;
     }
 
     /**
@@ -209,6 +222,38 @@ public class PPlayer {
      */
     public boolean isInAllowedRegion() {
         return this.inAllowedRegion;
+    }
+    
+    /**
+     * Sets the player's AFK state
+     * 
+     * @param afk true if the player is AFK, otherwise false
+     */
+    public void setAFK(boolean afk) {
+        this.isAFK = afk;
+    }
+    
+    /**
+     * @return true if the player is AFK, otherwise false
+     */
+    public boolean isAFK() {
+        return isAFK;
+    }
+     
+    /**
+     * Sets the player's participating state
+     * 
+     * @param participating true if the player is participating in a match, otherwise false
+     */
+    public void setParticipating(boolean participating) {
+        this.isParticipating = participating;
+    }
+    
+    /**
+     * @return true if the player is participating in a match, otherwise false
+     */
+    public boolean isParticipating() {
+        return isParticipating;
     }
 
     /**

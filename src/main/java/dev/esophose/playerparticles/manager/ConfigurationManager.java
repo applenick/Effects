@@ -24,6 +24,7 @@ public class ConfigurationManager extends AbstractConfigurationManager {
     public enum Setting implements RoseSetting {
         MESSAGES_ENABLED("message-enabled", true, "If you're using other plugins to execute commands you may wish to turn off messages"),
         USE_MESSAGE_PREFIX("use-message-prefix", true, "Whether or not to use the message-prefix field when displaying messages"),
+        PLAYER_RENDER_CAP("player-render-cap", 20, "This value determines the maximum number of viewers who can experience an effect at the same time."),
         GUI_ENABLED("gui-enabled", true, "If the command /pp gui is enabled", "Disable this if you have your own custom GUI through another plugin"),
         GUI_REQUIRE_PERMISSION("gui-require-permission", false, "If the GUI should require the permission playerparticles.gui to open"),
         GUI_REQUIRE_EFFECTS_AND_STYLES("gui-require-effects-and-styles", true, "If the GUI should require the player to have permission for at least", "one effect and one style to be able to open the GUI"),
@@ -92,7 +93,7 @@ public class ConfigurationManager extends AbstractConfigurationManager {
         GUI_ICON_MISC_EDIT_STYLE("gui-icon.misc.edit_style", Collections.singletonList("NETHER_STAR")),
         GUI_ICON_MISC_EDIT_DATA("gui-icon.misc.edit_data", Collections.singletonList("BOOK")),
         GUI_ICON_MISC_RESET("gui-icon.misc.reset", Collections.singletonList("BARRIER"));
-
+        
         private final String key;
         private final Object defaultValue;
         private final String[] comments;

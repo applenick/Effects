@@ -3,6 +3,7 @@ package dev.esophose.playerparticles.particles.spawning;
 import dev.esophose.playerparticles.PlayerParticles;
 import dev.esophose.playerparticles.hook.PGMHook;
 import dev.esophose.playerparticles.manager.ConfigurationManager.Setting;
+import dev.esophose.playerparticles.manager.ConfigurationManager;
 import dev.esophose.playerparticles.manager.ParticleManager;
 import dev.esophose.playerparticles.particles.PPlayer;
 import dev.esophose.playerparticles.particles.ParticleEffect;
@@ -101,7 +102,7 @@ public abstract class ParticleSpawner {
      * @throws ParticleDataException If the particle effect does not require additional data or if the data type is incorrect
      */
     public abstract void display(ParticleEffect particleEffect, Vibration vibration, double offsetX, double offsetY, double offsetZ, int amount, Location center, boolean isLongRange, Player owner);
-
+    
     /**
      * Gets a List of Players within the particle display range
      *
@@ -112,19 +113,26 @@ public abstract class ParticleSpawner {
      */
     public static List<Player> getPlayersInRange(Location center, boolean isLongRange, Player owner) {
         List<Player> players = new ArrayList<>();
+        int maxPlayers = ConfigurationManager.Setting.PLAYER_RENDER_CAP.getInt();
         int range = !isLongRange ? Setting.PARTICLE_RENDER_RANGE_PLAYER.getInt() : Setting.PARTICLE_RENDER_RANGE_FIXED_EFFECT.getInt();
         range *= range;
 
         for (PPlayer pplayer : PlayerParticles.getInstance().getManager(ParticleManager.class).getPPlayers().values()) {
             Player p = pplayer.getPlayer();
-            
-            if(p != null && PGMHook.isParticipating(p)) continue;
-            
+
+            if (pplayer.isParticipating() || pplayer.isAFK()) continue;
+
             if (!canSee(p, owner) || (!pplayer.canSeeOwnParticles() && p == owner && !isLongRange))
                 continue;
 
-            if (p != null && pplayer.canSeeParticles() && p.getWorld().equals(center.getWorld()) && center.distanceSquared(p.getLocation()) <= range)
+            if (p != null && pplayer.canSeeParticles() && p.getWorld().equals(center.getWorld()) && center.distanceSquared(p.getLocation()) <= range) {
                 players.add(p);
+
+                // Check if the maximum number of players has been reached
+                if (maxPlayers != -1 && players.size() >= maxPlayers) {
+                    break;
+                }
+            }
         }
 
         return players;
