@@ -4,6 +4,8 @@ import dev.esophose.playerparticles.config.Settings;
 import static dev.esophose.playerparticles.hook.PGMHook.isParticipating;
 
 import dev.esophose.playerparticles.PlayerParticles;
+import dev.esophose.playerparticles.hook.AFKHook;
+import dev.esophose.playerparticles.hook.PGMHook;
 import dev.esophose.playerparticles.hook.WorldGuardHook;
 import dev.esophose.playerparticles.particles.FixedParticleEffect;
 import dev.esophose.playerparticles.particles.PParticle;
@@ -199,6 +201,11 @@ public class ParticleManager extends Manager implements Listener, Runnable {
         // Spawn particles for each player
         for (PPlayer pplayer : this.particlePlayers.values()) {
             Player player = pplayer.getPlayer();
+            
+            if(player != null) {
+                pplayer.setParticipating(PGMHook.isParticipating(player));
+                pplayer.setAFK(AFKHook.isAFK(player));                
+            }
 
             // Don't show their particles if they are invisible
             // Don't spawn particles if the world doesn't allow it
@@ -257,8 +264,11 @@ public class ParticleManager extends Manager implements Listener, Runnable {
         if (!pplayer.isInAllowedRegion())
                 return;
             
-        if(isParticipating(pplayer.getPlayer()))
-                return;
+        if(pplayer.isParticipating())
+            return;
+            
+        if(pplayer.isAFK())
+            return;
 
         if (!pplayer.isInAllowedRegion())
             return;
@@ -346,7 +356,7 @@ public class ParticleManager extends Manager implements Listener, Runnable {
                 return;
         }
         
-        if(pplayer != null && pplayer.getPlayer() != null && isParticipating(pplayer.getPlayer()))
+        if(pplayer != null && pplayer.getPlayer() != null && pplayer.isParticipating())
             return;
 
         for (PParticle pparticle : particles)
