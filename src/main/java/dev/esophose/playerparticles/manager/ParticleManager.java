@@ -190,16 +190,20 @@ public class ParticleManager extends Manager implements Listener, Runnable {
         this.hue %= 360;
 
         PermissionManager permissionManager = this.rosePlugin.getManager(PermissionManager.class);
+        
+        // Update participation & afk status
+        for(PPlayer pplayer : this.particlePlayers.values()) {
+            Player player = pplayer.getPlayer();
+            if(player != null) {
+                pplayer.setParticipating(PGMHook.isParticipating(player));
+                pplayer.setAFK(AFKHook.isAFK(player));                
+            }
+        }
 
         // Spawn particles for each player
         for (PPlayer pplayer : this.particlePlayers.values()) {
             Player player = pplayer.getPlayer();
             
-            if(player != null) {
-                pplayer.setParticipating(PGMHook.isParticipating(player));
-                pplayer.setAFK(AFKHook.isAFK(player));                
-            }
-
             // Don't show their particles if they are invisible
             // Don't spawn particles if the world doesn't allow it
             if (player != null && ParticleUtils.isPlayerVisible(player) && permissionManager.isWorldEnabled(player.getWorld().getName()))
