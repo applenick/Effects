@@ -23,7 +23,6 @@ import dev.esophose.playerparticles.command.ToggleCommandModule;
 import dev.esophose.playerparticles.command.UseCommandModule;
 import dev.esophose.playerparticles.command.VersionCommandModule;
 import dev.esophose.playerparticles.command.WorldsCommandModule;
-import dev.esophose.playerparticles.hook.PlaceholderAPIHook;
 import dev.esophose.playerparticles.particles.PPlayer;
 import dev.esophose.playerparticles.util.ParticleUtils;
 import java.util.ArrayList;
@@ -103,20 +102,20 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
 
     /**
      * Finds a matching CommandModule by its name
-     * 
+     *
      * @param commandName The command name
      * @return The found CommandModule, otherwise null
      */
     public CommandModule findMatchingCommand(String commandName) {
         for (CommandModule commandModule : this.commands)
-            if (commandModule.getName().equalsIgnoreCase(commandName)) 
+            if (commandModule.getName().equalsIgnoreCase(commandName))
                 return commandModule;
         return null;
     }
 
     /**
      * Get a list of all available commands
-     * 
+     *
      * @return A List of all CommandModules registered
      */
     public List<CommandModule> getCommands() {
@@ -125,7 +124,7 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
 
     /**
      * Get all available command names
-     * 
+     *
      * @return All available command names
      */
     public List<String> getCommandNames() {
@@ -138,7 +137,7 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
     /**
      * Called when a player executes a PlayerParticles command
      * Checks what PlayerParticles command it is and calls the corresponding module
-     * 
+     *
      * @param sender Who executed the command
      * @param cmd The command
      * @param label The command label
@@ -184,12 +183,6 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
 
             return true;
         } else if (cmd.getName().equalsIgnoreCase("ppo")) {
-            // Replace placeholders if somebody tried to use them
-            Player player = sender instanceof Player ? (Player) sender : null;
-            for (int i = 0; i < args.length; i++)
-                if (args[i].startsWith("%"))
-                    args[i] = PlaceholderAPIHook.applyPlaceholders(player, args[i]);
-
             // Replace selectors if from command blocks
             if ((sender instanceof BlockCommandSender || sender instanceof CommandMinecart) && args.length > 0 && args[0].startsWith("@")) {
                 String selector = args[0];
@@ -221,13 +214,13 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
             // Run the /ppo command
             Bukkit.getScheduler().runTask(this.rosePlugin, () -> this.ppoCommand.onCommandExecute(sender, args));
         }
-        
+
         return true;
     }
 
     /**
      * Activated when a user pushes tab in chat prefixed with /pp
-     * 
+     *
      * @param sender The sender that hit tab, should always be a player
      * @param cmd The command the player is executing
      * @param alias The possible alias for the command
@@ -246,7 +239,7 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
 
             if (pplayer == null)
                 return new ArrayList<>();
-            
+
             if (args.length <= 1) {
                 CommandModule commandModule = this.findMatchingCommand(""); // Get the default command module
                 return commandModule.onTabComplete(pplayer, args);
@@ -263,7 +256,7 @@ public class CommandManager extends Manager implements CommandExecutor, TabCompl
         } else if (cmd.getName().equalsIgnoreCase("ppo")) {
             return this.ppoCommand.onTabComplete(sender, args);
         }
-        
+
         return new ArrayList<>();
     }
 }

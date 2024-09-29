@@ -32,7 +32,6 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
     compileOnly 'org.jetbrains:annotations:23.0.0'
-    compileOnly 'me.clip:placeholderapi:2.10.4'
     compileOnly 'tc.oc.occ:AFK:1.0.0-SNAPSHOT'
     api 'org.bstats:bstats-bukkit-lite:1.7'
     api 'org.codemc.worldguardwrapper:worldguardwrapper:1.2.0-SNAPSHOT'

@@ -7,8 +7,6 @@
 package dev.esophose.playerparticles;
 
 import dev.esophose.playerparticles.gui.hook.PlayerChatHook;
-import dev.esophose.playerparticles.hook.ParticlePlaceholderExpansion;
-import dev.esophose.playerparticles.hook.PlaceholderAPIHook;
 import dev.esophose.playerparticles.hook.WorldGuardHook;
 import dev.esophose.playerparticles.manager.CommandManager;
 import dev.esophose.playerparticles.manager.ConfigurationManager;
@@ -27,7 +25,6 @@ import java.util.List;
 
 import dev.rosewood.rosegarden.RosePlugin;
 import dev.rosewood.rosegarden.manager.Manager;
-import dev.rosewood.rosegarden.utils.NMSUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 
@@ -62,8 +59,6 @@ public class PlayerParticles extends RosePlugin {
         pm.registerEvents(new PPlayerCombatListener(), this);
         pm.registerEvents(new PlayerChatHook(), this);
 
-        if (PlaceholderAPIHook.enabled())
-            new ParticlePlaceholderExpansion(this).register();
 
         PlayerChatHook.setup();
     }
@@ -93,7 +88,7 @@ public class PlayerParticles extends RosePlugin {
 
     /**
      * Gets the instance of the plugin running on the server
-     * 
+     *
      * @return The PlayerParticles plugin instance
      */
     public static PlayerParticles getInstance() {
