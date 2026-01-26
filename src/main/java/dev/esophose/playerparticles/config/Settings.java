@@ -20,6 +20,7 @@ public final class Settings implements SettingHolder {
 
     public static final RoseSetting<Boolean> MESSAGES_ENABLED = create("message-enabled", BOOLEAN, true, "If you're using other plugins to execute commands you may wish to turn off messages");
     public static final RoseSetting<Boolean> USE_MESSAGE_PREFIX = create("use-message-prefix", BOOLEAN, true, "Whether or not to use the message-prefix field when displaying messages");
+    public static final RoseSetting<Integer> PLAYER_RENDER_CAP = create("player-render-cap", INTEGER, 20, "This value determines the maximum number of viewers who can experience an effect at the same time.");
     public static final RoseSetting<Boolean> GUI_ENABLED = create("gui-enabled", BOOLEAN, true, "If the command /pp gui is enabled", "Disable this if you have your own custom GUI through another plugin");
     public static final RoseSetting<Boolean> GUI_REQUIRE_PERMISSION = create("gui-require-permission", BOOLEAN, false, "If the GUI should require the permission playerparticles.gui to open");
     public static final RoseSetting<Boolean> GUI_REQUIRE_EFFECTS_AND_STYLES = create("gui-require-effects-and-styles", BOOLEAN, true, "If the GUI should require the player to have permission for at least", "one effect and one style to be able to open the GUI");

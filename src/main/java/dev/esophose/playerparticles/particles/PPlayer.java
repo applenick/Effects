@@ -3,7 +3,6 @@ package dev.esophose.playerparticles.particles;
 import dev.esophose.playerparticles.api.PlayerParticlesAPI;
 import dev.esophose.playerparticles.config.Settings;
 import dev.esophose.playerparticles.hook.AFKHook;
-import dev.esophose.playerparticles.manager.ConfigurationManager;
 import dev.esophose.playerparticles.styles.ParticleStyle;
 import dev.esophose.playerparticles.util.ParticleUtils;
 import java.util.ArrayList;

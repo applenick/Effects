@@ -11,8 +11,8 @@ group = 'dev.esophose'
 version = '8.3.4-OCC'
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_8
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_21
     disableAutoTargetJvm() // Allows depending on Paper's newer APIs even though they use Java 17
 
     withJavadocJar()
