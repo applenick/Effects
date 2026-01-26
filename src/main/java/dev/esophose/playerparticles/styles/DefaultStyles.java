@@ -28,6 +28,7 @@ public class DefaultStyles implements Listener {
     public static final ParticleStyle HURT = new ParticleStyleHurt();
     public static final ParticleStyle ICOSPHERE = new ParticleStyleIcosphere();
     public static final ParticleStyle INVOCATION = new ParticleStyleInvocation();
+    public static final ParticleStyle MINI_CUBES = new ParticleStyleMiniCubes();
     public static final ParticleStyle MOVE = new ParticleStyleMove();
     public static final ParticleStyle NORMAL = new ParticleStyleNormal();
     public static final ParticleStyle ORBIT = new ParticleStyleOrbit();
@@ -36,7 +37,9 @@ public class DefaultStyles implements Listener {
     public static final ParticleStyle POINT = new ParticleStylePoint();
     public static final ParticleStyle POPPER = new ParticleStylePopper();
     public static final ParticleStyle PULSE = new ParticleStylePulse();
+    public static final ParticleStyle PULSING_CUBES = new ParticleStylePulsingCubes();
     public static final ParticleStyle QUADHELIX = new ParticleStyleQuadhelix();
+    public static final ParticleStyle RANDOM_CUBES = new ParticleStyleRandomCubes();
     public static final ParticleStyle RINGS = new ParticleStyleRings();
     public static final ParticleStyle SPHERE = new ParticleStyleSphere();
     public static final ParticleStyle SPIN = new ParticleStyleSpin();
@@ -87,6 +90,7 @@ public class DefaultStyles implements Listener {
         event.registerEventStyle(HURT);
         event.registerStyle(ICOSPHERE);
         event.registerStyle(INVOCATION);
+        event.registerStyle(MINI_CUBES);
         event.registerEventStyle(MOVE);
         event.registerStyle(NORMAL);
         event.registerStyle(ORBIT);
@@ -95,7 +99,9 @@ public class DefaultStyles implements Listener {
         event.registerStyle(POINT);
         event.registerStyle(POPPER);
         event.registerStyle(PULSE);
+        event.registerStyle(PULSING_CUBES);
         event.registerStyle(QUADHELIX);
+        event.registerStyle(RANDOM_CUBES);
         event.registerStyle(RINGS);
         event.registerStyle(SPHERE);
         event.registerStyle(SPIN);
