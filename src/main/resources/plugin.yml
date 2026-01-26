@@ -6,7 +6,7 @@ description: Display particles around observers!
 author: Esophose
 website: https://www.spigotmc.org/resources/40261/
 folia-supported: true
-softdepend: [PlaceholderAPI, WorldGuard, WorldEdit, PGM, AFK]
+softdepend: [PlaceholderAPI, WorldGuard, WorldEdit, PGM]
 commands:
   pp:
     description: The main PlayerParticles command. By default, opens the GUI.

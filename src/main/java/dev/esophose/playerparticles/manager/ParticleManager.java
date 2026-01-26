@@ -4,7 +4,6 @@ import dev.esophose.playerparticles.config.Settings;
 import static dev.esophose.playerparticles.hook.PGMHook.isParticipating;
 
 import dev.esophose.playerparticles.PlayerParticles;
-import dev.esophose.playerparticles.hook.AFKHook;
 import dev.esophose.playerparticles.hook.PGMHook;
 import dev.esophose.playerparticles.hook.WorldGuardHook;
 import dev.esophose.playerparticles.particles.FixedParticleEffect;
@@ -16,6 +15,7 @@ import dev.esophose.playerparticles.particles.ParticlePair;
 import dev.esophose.playerparticles.particles.data.NoteColor;
 import dev.esophose.playerparticles.particles.data.OrdinaryColor;
 import dev.esophose.playerparticles.styles.DefaultStyles;
+import dev.esophose.playerparticles.util.AFKUtil;
 import dev.esophose.playerparticles.util.ParticleUtils;
 import dev.rosewood.rosegarden.RosePlugin;
 import dev.rosewood.rosegarden.manager.Manager;
@@ -199,11 +199,12 @@ public class ParticleManager extends Manager implements Listener, Runnable {
         PermissionManager permissionManager = this.rosePlugin.getManager(PermissionManager.class);
         
         // Update participation & afk status
-        for(PPlayer pplayer : this.particlePlayers.values()) {
+        AFKUtil afkUtil = PlayerParticles.getInstance().getAFKUtil();
+        for (PPlayer pplayer : this.particlePlayers.values()) {
             Player player = pplayer.getPlayer();
-            if(player != null) {
+            if (player != null) {
                 pplayer.setParticipating(PGMHook.isParticipating(player));
-                pplayer.setAFK(AFKHook.isAFK(player));                
+                pplayer.setAFK(afkUtil != null && afkUtil.isAFK(player));
             }
         }
 

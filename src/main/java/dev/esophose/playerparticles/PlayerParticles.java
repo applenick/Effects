@@ -19,6 +19,7 @@ import dev.esophose.playerparticles.manager.ParticleStyleManager;
 import dev.esophose.playerparticles.manager.PermissionManager;
 import dev.esophose.playerparticles.particles.listener.PPlayerCombatListener;
 import dev.esophose.playerparticles.particles.listener.PPlayerMovementListener;
+import dev.esophose.playerparticles.util.AFKUtil;
 import dev.rosewood.rosegarden.RosePlugin;
 import dev.rosewood.rosegarden.config.SettingHolder;
 import dev.rosewood.rosegarden.hook.PlaceholderAPIHook;
@@ -39,6 +40,7 @@ public class PlayerParticles extends RosePlugin {
      * The running instance of PlayerParticles on the server
      */
     private static PlayerParticles INSTANCE;
+    private AFKUtil afkUtil;
 
     public PlayerParticles() {
         super(40261, 3531, DataManager.class, LocaleManager.class, null);
@@ -60,13 +62,17 @@ public class PlayerParticles extends RosePlugin {
         pm.registerEvents(new PPlayerMovementListener(), this);
         pm.registerEvents(new PPlayerCombatListener(), this);
 
+        this.afkUtil = new AFKUtil(this);
 
         Settings.GuiIcon.reset();
     }
 
     @Override
     protected void disable() {
-
+        if (this.afkUtil != null) {
+            this.afkUtil.shutdown();
+            this.afkUtil = null;
+        }
     }
 
     @Override
@@ -111,6 +117,10 @@ public class PlayerParticles extends RosePlugin {
      */
     public static PlayerParticles getInstance() {
         return INSTANCE;
+    }
+
+    public AFKUtil getAFKUtil() {
+        return this.afkUtil;
     }
 
     /**
